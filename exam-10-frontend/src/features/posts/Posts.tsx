@@ -8,7 +8,7 @@ import PostItem from "./components/PostItem/PostItem.tsx";
 
 
 const Posts = () => {
-    const {items, fetchLoading, fetchAllPosts} = usePostsStore();
+    const {items, fetchLoading, fetchAllPosts, deletePost} = usePostsStore();
 
 
     useEffect(() => {
@@ -24,7 +24,7 @@ const Posts = () => {
                     </Typography>
                 </Grid>
                 <Grid>
-                    <Button color="primary" component={Link} to='/products/new'>
+                    <Button color="primary" component={Link} to='/posts/new'>
                         Add post
                     </Button>
                 </Grid>
@@ -41,6 +41,7 @@ const Posts = () => {
                                     id={post.id}
                                     image={post.image || undefined}
                                     created_at={post.created_at || ''}
+                                    onDelete={deletePost}
                                 />
                             ))}
                         </Grid>

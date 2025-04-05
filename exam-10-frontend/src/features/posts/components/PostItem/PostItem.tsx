@@ -8,6 +8,7 @@ import React from "react";
 import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import isToday from 'dayjs/plugin/isToday';
+import DeleteIcon from "@mui/icons-material/Delete";
 
 dayjs.extend(localizedFormat);
 dayjs.extend(isToday);
@@ -18,9 +19,10 @@ interface Props {
     id: string;
     image: string | undefined;
     created_at: string;
+    onDelete: (id: string) => void;
 }
 
-const PostItem: React.FC<Props> = ({title, description, id, image, created_at}) => {
+const PostItem: React.FC<Props> = ({title, id, image, created_at, onDelete}) => {
     let cameraImage = NotFoundPic;
 
     if (image) {
@@ -37,11 +39,7 @@ const PostItem: React.FC<Props> = ({title, description, id, image, created_at}) 
                     alt={title}
                 />
                 <CardHeader title={title} />
-                <CardContent>
-                    <strong>
-                        Description: {description}
-                    </strong>
-                </CardContent>
+
                 <CardContent>
                     <strong>
                         Date: {created_at ? (
@@ -54,6 +52,9 @@ const PostItem: React.FC<Props> = ({title, description, id, image, created_at}) 
                 <CardActions>
                     <IconButton component={Link} to={'/posts/' + id}>
                         <ArrowForwardIcon/>
+                    </IconButton>
+                    <IconButton onClick={() => onDelete(id)} color="error">
+                        <DeleteIcon />
                     </IconButton>
                 </CardActions>
             </Card>

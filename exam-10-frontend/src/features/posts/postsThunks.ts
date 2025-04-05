@@ -1,6 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import axiosAPI from "../../axiosApi.ts";
 import {Post, PostMutation} from "../../types";
+import axios from "axios";
 
 export const fetchAllPosts = createAsyncThunk<Post[], void>(
     'posts/fetchAllPosts',
@@ -33,5 +34,13 @@ export const createPost = createAsyncThunk<void, PostMutation>(
         });
 
         await axiosAPI.post('/posts', formData);
+    }
+);
+
+export const deletePost = createAsyncThunk(
+    'posts/delete',
+    async (id: string) => {
+        await axios.delete(`/posts/${id}`);
+        return id;
     }
 );

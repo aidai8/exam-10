@@ -47,4 +47,13 @@ postRouter.post('/', imagesUpload.single('image'), async (req, res) => {
     res.send(post[0]);
 });
 
+postRouter.delete('/:id', async (req, res) => {
+    const id = req.params.id;
+    const connection = await mysqlDb.getConnection();
+
+    const [result] = await connection.query('DELETE FROM posts WHERE id = ?', [id]);
+    const resultHeader = result as ResultSetHeader;
+    res.send({message: 'Post deleted successfully'});
+});
+
 export default postRouter;
