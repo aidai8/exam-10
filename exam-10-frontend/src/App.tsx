@@ -2,6 +2,9 @@ import {Container, CssBaseline, Typography} from "@mui/material";
 import AppToolbar from "./components/UI/AppToolbar/AppToolbar.tsx";
 import {Route, Routes} from "react-router-dom";
 import {ToastContainer} from "react-toastify";
+import Posts from "./features/posts/Posts.tsx";
+import FullPost from "./features/posts/FullPost.tsx";
+import NewPost from "./features/posts/NewPost.tsx";
 
 
 const App = () => {
